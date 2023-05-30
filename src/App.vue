@@ -6,7 +6,7 @@ const end_ = ref(6)
 const minute = ref(minute_.value)
 const end = ref(end_.value)
 
-const timer = ref(null)
+let timer
 const toggle = ref(true)
 
 const start = () => {
@@ -15,7 +15,7 @@ const start = () => {
     end.value = end_.value
   }
   toggle.value = !toggle.value
-  timer.value = setInterval(() => {
+  timer = setInterval(() => {
     if (minute.value !== 0 && end.value === 0) {
       minute.value--
       end.value = 59
@@ -29,12 +29,13 @@ const start = () => {
 }
 
 const resume = () => {
-  clearInterval(timer.value)
+  clearInterval(timer)
   toggle.value = !toggle.value
 }
 
 const stop = () => {
-  resume()
+  clearInterval(timer)
+  toggle.value = true
   minute.value = minute_.value
   end.value = end_.value
 }
@@ -61,7 +62,7 @@ const stop = () => {
           </button>
           <button
             v-if="toggle"
-            @click="start"  
+            @click="start"
             class="pause rounded-3xl duration-150 flex justify-center items-center bg-[#e4f9e9]"
           >
             <i class="bx bx-play"></i>
