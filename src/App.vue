@@ -14,7 +14,7 @@ const start = () => {
     minute.value = minute_.value
     end.value = end_.value
   }
-  toggle.value = !toggle.value
+  toggle.value = false
   timer = setInterval(() => {
     if (minute.value !== 0 && end.value === 0) {
       minute.value--
@@ -30,14 +30,16 @@ const start = () => {
 
 const resume = () => {
   clearInterval(timer)
-  toggle.value = !toggle.value
+  toggle.value = true
 }
 
 const stop = () => {
   clearInterval(timer)
-  toggle.value = true
   minute.value = minute_.value
   end.value = end_.value
+  if (!toggle.value) {
+    start()
+  }
 }
 </script>
 
@@ -58,7 +60,8 @@ const stop = () => {
             @click="stop"
             class="p-[24px] rounded-[24px] h-20 duration-150 flex justify-center items-center bg-[#e4f9e9]"
           >
-            <img src="./assets/img/dots-horizon.svg" alt="" />
+            <i class="bx bx-stop"></i>
+            <!-- <img src="./assets/img/dots-horizon.svg" alt="" /> -->
           </button>
           <button
             v-if="toggle"
