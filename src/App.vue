@@ -45,8 +45,8 @@ const stop = () => {
     <div class="container mx-auto grid place-items-center h-screen">
       <div class="timer flex flex-col justify-center items-center">
         <div class="status flex items-center gap-[8px] h-[48px]">
-          <img src="./assets/img/brain.svg" alt="" />
-          <span class="capitalize">focus</span>
+          <img src="./assets/img/cup.svg" alt="" />
+          <span class="capitalize">short break</span>
         </div>
         <div class="stopwatch">
           <h1>{{ minute.toString().padStart(2, '0') }}</h1>
@@ -61,7 +61,7 @@ const stop = () => {
           </button>
           <button
             v-if="toggle"
-            @click="start"
+            @click="start"  
             class="pause rounded-3xl duration-150 flex justify-center items-center bg-[#e4f9e9]"
           >
             <i class="bx bx-play"></i>
